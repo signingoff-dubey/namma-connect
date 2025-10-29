@@ -495,7 +495,7 @@ async def start_trip(request: Request, from_station: str, to_station: str, line:
     return {"success": True, "trip": trip.model_dump()}
 
 @api_router.put("/trips/{trip_id}")
-async def update_trip(trip_id: str, current_station: Optional[str] = None, active: Optional[bool] = None, request: Request, authorization: Optional[str] = Header(None)):
+async def update_trip(trip_id: str, request: Request, current_station: Optional[str] = None, active: Optional[bool] = None, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
