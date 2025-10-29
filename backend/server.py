@@ -393,7 +393,7 @@ async def get_waves(request: Request, authorization: Optional[str] = Header(None
     return result
 
 @api_router.post("/waves")
-async def send_wave(to_user_id: str, request: Request, authorization: Optional[str] = Header(None)):
+async def send_wave(request: Request, to_user_id: str, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
