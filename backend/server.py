@@ -479,7 +479,7 @@ async def get_trips(request: Request, authorization: Optional[str] = Header(None
     return trips
 
 @api_router.post("/trips")
-async def start_trip(from_station: str, to_station: str, line: str, request: Request, authorization: Optional[str] = Header(None)):
+async def start_trip(request: Request, from_station: str, to_station: str, line: str, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
