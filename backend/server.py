@@ -341,7 +341,7 @@ async def get_connections(request: Request, authorization: Optional[str] = Heade
     return result
 
 @api_router.post("/connections")
-async def create_connection(connected_user_id: str, request: Request, authorization: Optional[str] = Header(None)):
+async def create_connection(request: Request, connected_user_id: str, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
