@@ -459,7 +459,7 @@ async def get_messages_with_user(other_user_id: str, request: Request, authoriza
     return messages
 
 @api_router.post("/messages")
-async def send_message(to_user_id: str, content: str, request: Request, authorization: Optional[str] = Header(None)):
+async def send_message(request: Request, to_user_id: str, content: str, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
