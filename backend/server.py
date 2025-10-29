@@ -367,7 +367,7 @@ async def create_connection(request: Request, connected_user_id: str, authorizat
     return {"success": True}
 
 @api_router.put("/connections/{connection_id}")
-async def update_connection(connection_id: str, status: str, request: Request, authorization: Optional[str] = Header(None)):
+async def update_connection(connection_id: str, request: Request, status: str, authorization: Optional[str] = Header(None)):
     user = await get_current_user(request, authorization)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
